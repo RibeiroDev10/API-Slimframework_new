@@ -18,12 +18,20 @@ $app = new \Slim\App(slimConfiguration());
 
 // ==================================================================
 
+$app->group('/v1', function () use ($app) {
+    $app->get('/test-with-versions', function () {
+        return "oi v1";
+    });
+});
+
 $app->get('/exception_test', ExceptionController::class . ':test');
 
 $app->post('/login', AuthController::class . ':login');
 $app->get('/refresh_token', AuthController::class . ':refreshToken');
 
-$app->get('/teste', function() { echo 'Oi!'; });
+$app->get('/teste', function () {
+    echo 'Oi!';
+});
 
 $app->group('', function () use ($app) {
 
